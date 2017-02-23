@@ -12,7 +12,7 @@ tf.logging.set_verbosity(tf.logging.INFO)
 
 data = pd.read_csv("SubstanceAbuseOutput.csv")
 df=data.loc[1:, :]
-df['label'] = np.where(((df['hour']>21)|(df['hour']<6)),1,0)
+df['label'] = np.where(((df.loc[:,'hour']>21)|(df.loc[:,'hour']<6),1,0))
 df=df.drop(['hour'], axis=1)
 
 COLUMNS = ['%s_'%k for k in range(0,10004)]
@@ -29,7 +29,7 @@ feature_cols = [tf.contrib.layers.real_valued_column(k)
                   for k in FEATURES]
 
 classifier = tf.contrib.learn.DNNClassifier(feature_columns=feature_cols,
-                                          hidden_units=[100, 10],
+                                          hidden_units=[30, 10, 20],
                                           n_classes=2,
                                           model_dir="/tmp/substance_abuse_predict_night2")
 
