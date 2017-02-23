@@ -21,7 +21,7 @@ df.columns = COLUMNS
 training_set = df.loc[:2000]
 test_set = df.loc[2000:]
 
-FEATURES = train_set.columns.drop(['0_','label'],axis=1)
+FEATURES = training_set.columns.drop(['0_','label'],axis=1)
 LABEL = "label"
 
 
