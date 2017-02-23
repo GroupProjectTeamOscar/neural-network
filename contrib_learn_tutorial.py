@@ -35,7 +35,7 @@ training_set[LABEL].values.shape
 
 regressor.fit(input_fn=lambda: input_fn(training_set), steps=5000)
 
-accuracy_score = regressor.evaluate(input_fn=lambda: input_fn(test_set)["accuracy"]
+accuracy_score = regressor.evaluate(input_fn=lambda: input_fn(test_set)["accuracy"])
 print('Accuracy: {0:f}'.format(accuracy_score))
 
 
