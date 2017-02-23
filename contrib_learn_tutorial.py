@@ -26,9 +26,9 @@ regressor = tf.contrib.learn.DNNRegressor(feature_columns=feature_cols,
                                           model_dir="/tmp/boston_model")
 
 def input_fn(data_set):
-  feature_cols = {k: tf.constant(data_set[k].values)
+  feature_cols = {k: tf.constant(data_set[k].values, shape=[df[k].size, 1])
                   for k in FEATURES}
-  labels = tf.constant(data_set[LABEL].values)
+  labels = tf.constant(data_set[LABEL].values, shape=[df[LABEL].size, 1])
   return feature_cols, labels
 
 training_set[LABEL].values.shape
