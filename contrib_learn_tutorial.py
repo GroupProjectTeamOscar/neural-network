@@ -28,7 +28,7 @@ LABEL = "label"
 feature_cols = [tf.contrib.layers.real_valued_column(k)
                   for k in FEATURES]
 
-classifier = tf.contrib.learn.DNNRegressor(feature_columns=feature_cols,
+classifier = tf.contrib.learn.DNNClassifier(feature_columns=feature_cols,
                                           hidden_units=[10, 10],
                                           n_classes=2,
                                           model_dir="/tmp/substance_abuse_predict_night")
