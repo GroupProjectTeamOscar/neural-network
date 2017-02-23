@@ -29,9 +29,9 @@ feature_cols = [tf.contrib.layers.real_valued_column(k)
                   for k in FEATURES]
 
 classifier = tf.contrib.learn.DNNClassifier(feature_columns=feature_cols,
-                                          hidden_units=[10, 10],
+                                          hidden_units=[100, 10],
                                           n_classes=2,
-                                          model_dir="/tmp/substance_abuse_predict_night")
+                                          model_dir="/tmp/substance_abuse_predict_night2")
 
 def input_fn(data_set):
   feature_cols = {k: tf.constant(data_set[k].values, shape=[data_set[k].size, 1])
