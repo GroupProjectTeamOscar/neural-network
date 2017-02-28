@@ -10,18 +10,16 @@ import numpy as np
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
-data = pd.read_csv("SubstanceAbuseOutput.csv")
+data = pd.read_csv("/Desktop/deeplearningsociety/code/data/healthoutput_test.csv")
 df=data.loc[1:, :]
-df['label'] = np.where(((df.loc[:,'hour']>21)|(df.loc[:,'hour']<6)),1,0)
-df=df.drop(['hour'], axis=1)
 
 COLUMNS = ['%s_'%k for k in range(0,10004)]
 COLUMNS.append('label')
 df.columns = COLUMNS
-training_set = df.loc[:2000]
-test_set = df.loc[2000:]
+training_set = df.loc[:10000]
+test_set = df.loc[10000:]
 
-FEATURES = training_set.columns.drop(['0_','label'])
+FEATURES = training_set.columns.drop(['label'])
 LABEL = "label"
 
 
@@ -29,9 +27,9 @@ feature_cols = [tf.contrib.layers.real_valued_column(k)
                   for k in FEATURES]
 
 classifier = tf.contrib.learn.DNNClassifier(feature_columns=feature_cols,
-                                          hidden_units=[30, 10, 20],
+                                          hidden_units=[100, 10, 20],
                                           n_classes=2,
-                                          model_dir="/tmp/substance_abuse_predict_night3")
+                                          model_dir="/tmp/health_predict_phraselabel")
 
 def input_fn(data_set):
   feature_cols = {k: tf.constant(data_set[k].values, shape=[data_set[k].size, 1])
@@ -40,7 +38,7 @@ def input_fn(data_set):
   return feature_cols, labels
 
 
-classifier.fit(input_fn=lambda: input_fn(training_set), steps=5000)
+classifier.fit(input_fn=lambda: input_fn(training_set), steps=2000)
 
 ev = classifier.evaluate(input_fn=lambda: input_fn(test_set), steps=1)
 loss_score = ev["loss"]
