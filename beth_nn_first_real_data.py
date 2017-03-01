@@ -29,7 +29,7 @@ feature_cols = [tf.contrib.layers.real_valued_column(k)
 classifier = tf.contrib.learn.DNNClassifier(feature_columns=feature_cols,
                                           hidden_units=[100, 10, 20],
                                           n_classes=2,
-                                          model_dir="/tmp/health_predict_phraselabel")
+                                          model_dir="/tmp/health_predict_phraselabel1")
 
 def input_fn(data_set):
   feature_cols = {k: tf.constant(data_set[k].values, shape=[data_set[k].size, 1])
