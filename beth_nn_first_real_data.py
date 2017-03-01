@@ -16,8 +16,8 @@ df=data.loc[1:, :]
 COLUMNS = ['%s_'%k for k in range(0,10004)]
 COLUMNS.append('label')
 df.columns = COLUMNS
-training_set = df.loc[:10000]
-test_set = df.loc[10000:]
+training_set = df.loc[:2000]
+test_set = df.loc[2000:]
 
 FEATURES = training_set.columns.drop(['label'])
 LABEL = "label"
