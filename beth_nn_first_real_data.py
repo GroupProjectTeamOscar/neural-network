@@ -10,7 +10,7 @@ import numpy as np
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
-data = pd.read_csv("../../Desktop/deeplearningsociety/code/data/healthoutput_test.csv")
+data = pd.read_csv("../../Desktop/deeplearningsociety/code/data/substanceabuse_train.csv")
 df=data.loc[1:, :]
 
 COLUMNS = ['%s_'%k for k in range(0,10004)]
